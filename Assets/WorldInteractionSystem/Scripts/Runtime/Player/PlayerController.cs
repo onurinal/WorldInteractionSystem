@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using WorldInteractionSystem.Runtime.Core;
+using WorldInteractionSystem.Runtime.Manager;
 
 namespace WorldInteractionSystem.Runtime.Player
 {
@@ -11,6 +14,8 @@ namespace WorldInteractionSystem.Runtime.Player
         private Rigidbody myRigidbody;
         private IInputProvider inputProvider;
         private PlayerMovement playerMovement;
+
+        private IInteractable currentInteractable;
 
         private void Awake()
         {
@@ -56,6 +61,42 @@ namespace WorldInteractionSystem.Runtime.Player
         public void Initialize()
         {
             playerMovement.Initialize(inputProvider, playerData, cameraTransform, myRigidbody, myAnimator);
+        }
+
+        private void OnEnable()
+        {
+            EventManager.OnInteract += Interact;
+        }
+
+        private void OnDisable()
+        {
+            EventManager.OnInteract -= Interact;
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            var interactable = other.GetComponentInParent<IInteractable>();
+            if (interactable != null)
+            {
+                currentInteractable = interactable;
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            var interactable = other.GetComponentInParent<IInteractable>();
+            if (interactable != null)
+            {
+                currentInteractable = null;
+            }
+        }
+
+        private void Interact()
+        {
+            if (currentInteractable != null)
+            {
+                currentInteractable.Interact();
+            }
         }
     }
 }

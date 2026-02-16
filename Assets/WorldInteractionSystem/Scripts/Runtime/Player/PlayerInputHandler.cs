@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
+using WorldInteractionSystem.Runtime.Manager;
 
 namespace WorldInteractionSystem.Runtime.Player
 {
@@ -9,7 +10,6 @@ namespace WorldInteractionSystem.Runtime.Player
 
         public Vector2 MoveInput { get; private set; }
         public Vector2 LookInput { get; private set; }
-        private bool isInteractPressed;
 
         private void OnEnable()
         {
@@ -44,19 +44,8 @@ namespace WorldInteractionSystem.Runtime.Player
         {
             if (context.performed)
             {
-                isInteractPressed = true;
+                EventManager.TriggerOnInteract();
             }
-        }
-
-        public bool ConsumeInteractPressed()
-        {
-            if (!isInteractPressed)
-            {
-                return false;
-            }
-
-            isInteractPressed = false;
-            return true;
         }
     }
 }

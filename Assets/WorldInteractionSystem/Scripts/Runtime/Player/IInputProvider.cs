@@ -4,8 +4,8 @@ namespace WorldInteractionSystem.Runtime.Player
 {
     public interface IInputProvider
     {
-        public Vector2 MoveInput { get; }
-        public Vector2 LookInput { get; }
-        public bool ConsumeInteractPressed();
+        Vector2 MoveInput { get; }
+
+        Vector2 LookInput { get; }
     }
 }
