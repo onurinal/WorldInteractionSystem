@@ -4,7 +4,7 @@ namespace WorldInteractionSystem.Runtime.Core
 {
     public abstract class InteractableToggleBase : MonoBehaviour, IInteractableToggle
     {
-        [SerializeField] protected bool isOn;
+        protected bool isOn;
         [SerializeField] private string onText = "Turn On";
         [SerializeField] private string offText = "Turn Off";
 

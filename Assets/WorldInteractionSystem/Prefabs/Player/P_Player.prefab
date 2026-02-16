@@ -59,7 +59,7 @@ MonoBehaviour:
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
-    FieldOfView: 70
+    FieldOfView: 90
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -322,7 +322,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 70
+  field of view: 90
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -500,6 +500,7 @@ GameObject:
   - component: {fileID: 9135587854694502538}
   - component: {fileID: 997165070821104559}
   - component: {fileID: 8883910846877664827}
+  - component: {fileID: 8044369384197309023}
   - component: {fileID: 2066741570367889371}
   - component: {fileID: 2951969613298189361}
   m_Layer: 0
@@ -540,9 +541,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e61901a2a01b491fa0b32190306e1931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WorldInteractionSystem.Runtime.Player.PlayerController
-  cameraTransform: {fileID: 225663565172765498}
+  playerCamera: {fileID: 225663565172765498}
   playerData: {fileID: 11400000, guid: 22884ae4e8a5432459b8ec1ff7dbb735, type: 2}
   myAnimator: {fileID: 4246933219257757950}
+  myRigidbody: {fileID: 2066741570367889371}
+  playerMovement: {fileID: 8883910846877664827}
+  playerInteraction: {fileID: 8044369384197309023}
 --- !u!114 &997165070821104559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -567,6 +571,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4b9867dd09341ef9113daaf4ac2a075, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WorldInteractionSystem.Runtime.Player.PlayerMovement
+--- !u!114 &8044369384197309023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7516307126024396625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e209a0c89d574b9d964b724093da6c35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WorldInteractionSystem.Runtime.Player.PlayerInteraction
+  interactionCollider: {fileID: 7241431423984923689}
+  interactionRange: 4
 --- !u!54 &2066741570367889371
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -628,7 +646,7 @@ GameObject:
   - component: {fileID: 6457656269078665927}
   - component: {fileID: 7241431423984923689}
   m_Layer: 0
-  m_Name: InteractionRange
+  m_Name: InteractionCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -643,8 +661,8 @@ Transform:
   m_GameObject: {fileID: 8220975638402212479}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4077835808267151517}
@@ -668,8 +686,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 4, y: 4, z: 4}
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!1001 &7753710828996169071
 PrefabInstance:
   m_ObjectHideFlags: 0

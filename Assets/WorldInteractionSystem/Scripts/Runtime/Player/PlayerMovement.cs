@@ -11,17 +11,17 @@ namespace WorldInteractionSystem.Runtime.Player
         private IInputProvider inputProvider;
         private PlayerData playerData;
         private Rigidbody myRigidbody;
-        private Transform cameraTransform;
+        private Transform playerCamera;
         private Animator myAnimator;
 
         private bool isMoving;
 
-        public void Initialize(IInputProvider inputProvider, PlayerData playerData, Transform cameraTransform,
+        public void Initialize(IInputProvider inputProvider, PlayerData playerData, Transform playerCamera,
             Rigidbody myRigidbody, Animator myAnimator)
         {
             this.inputProvider = inputProvider;
             this.playerData = playerData;
-            this.cameraTransform = cameraTransform;
+            this.playerCamera = playerCamera;
             this.myRigidbody = myRigidbody;
             this.myAnimator = myAnimator;
         }
@@ -47,8 +47,8 @@ namespace WorldInteractionSystem.Runtime.Player
                 return Vector3.zero;
             }
 
-            var cameraForward = cameraTransform.forward;
-            var cameraRight = cameraTransform.right;
+            var cameraForward = playerCamera.forward;
+            var cameraRight = playerCamera.right;
             cameraForward.y = 0f;
             cameraRight.y = 0f;
 
