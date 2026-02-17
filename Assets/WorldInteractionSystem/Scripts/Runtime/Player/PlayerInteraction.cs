@@ -40,6 +40,7 @@ namespace WorldInteractionSystem.Runtime.Player
             if (interactable != null)
             {
                 currentInteractable = interactable;
+                currentInteractable.ToggleHighlight(true);
             }
         }
 
@@ -48,6 +49,7 @@ namespace WorldInteractionSystem.Runtime.Player
             var interactable = other.GetComponentInParent<IInteractable>();
             if (interactable != null)
             {
+                currentInteractable.ToggleHighlight(false);
                 currentInteractable = null;
             }
         }

@@ -1025,6 +1025,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_Door
       objectReference: {fileID: 0}
+    - target: {fileID: 3719758407790915743, guid: daf364b87939a5140b5c4a47530404c6, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3719758407790915743, guid: daf364b87939a5140b5c4a47530404c6, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 67a094f4c2ab7474b9cd1b17375e2df3, type: 2}
+    - target: {fileID: 3719758407790915743, guid: daf364b87939a5140b5c4a47530404c6, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 62b5614c8e559e44a90faf2dd400e4b3, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
