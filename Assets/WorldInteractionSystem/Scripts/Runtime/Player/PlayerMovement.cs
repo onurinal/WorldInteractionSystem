@@ -6,7 +6,7 @@ namespace WorldInteractionSystem.Runtime.Player
     public class PlayerMovement : MonoBehaviour
     {
         private static readonly int Running = Animator.StringToHash("Running");
-        public const float MovementThreshold = 0.001f;
+        private const float MovementThreshold = 0.001f;
 
         private IInputProvider inputProvider;
         private PlayerData playerData;

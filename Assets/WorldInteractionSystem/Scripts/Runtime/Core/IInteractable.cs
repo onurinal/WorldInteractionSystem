@@ -7,6 +7,6 @@ namespace WorldInteractionSystem.Runtime.Core
         void Interact();
         void ToggleHighlight(bool active);
         string GetInteractText();
-        Transform GetTransform();
+        Vector3 GetInteractionPosition();
     }
 }

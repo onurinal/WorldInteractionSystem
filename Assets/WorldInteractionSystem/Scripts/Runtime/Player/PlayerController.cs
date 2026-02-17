@@ -8,22 +8,17 @@ namespace WorldInteractionSystem.Runtime.Player
         [SerializeField] private PlayerData playerData;
         [SerializeField] private Animator myAnimator;
 
+        [SerializeField] private PlayerInputHandler inputProvider;
         [SerializeField] private Rigidbody myRigidbody;
         [SerializeField] private PlayerMovement playerMovement;
-        [SerializeField] private PlayerInteraction playerInteraction;
+        [SerializeField] private PlayerInteractionDetector playerInteractionDetector;
 
-        private IInputProvider inputProvider;
 
         private void Awake()
         {
-            CacheReferences();
             ValidateReferences();
         }
 
-        private void CacheReferences()
-        {
-            inputProvider = GetComponent<IInputProvider>();
-        }
 
         private void ValidateReferences()
         {
@@ -52,7 +47,7 @@ namespace WorldInteractionSystem.Runtime.Player
                 Debug.LogError($"{nameof(PlayerController)}: PlayerMovement component is missing.", this);
             }
 
-            if (playerInteraction == null)
+            if (playerInteractionDetector == null)
             {
                 Debug.LogError($"{nameof(PlayerController)}: PlayerInteraction component is missing.", this);
             }
@@ -61,7 +56,6 @@ namespace WorldInteractionSystem.Runtime.Player
         public void Initialize()
         {
             playerMovement.Initialize(inputProvider, playerData, playerCamera, myRigidbody, myAnimator);
-            playerInteraction.Initialize();
         }
     }
 }

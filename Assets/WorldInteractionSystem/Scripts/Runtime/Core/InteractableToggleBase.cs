@@ -4,6 +4,8 @@ namespace WorldInteractionSystem.Runtime.Core
 {
     public abstract class InteractableToggleBase : MonoBehaviour, IInteractableToggle
     {
+        [SerializeField] private Transform interactionPoint;
+
         [Header("Outline Settings")]
         private static readonly int OutlineThicknessId = Shader.PropertyToID("_OutlineThickness");
         [SerializeField] private MeshRenderer meshRenderer;
@@ -45,9 +47,9 @@ namespace WorldInteractionSystem.Runtime.Core
             return isOn ? onText : offText;
         }
 
-        public Transform GetTransform()
+        public Vector3 GetInteractionPosition()
         {
-            return transform;
+            return interactionPoint.position;
         }
 
         protected abstract void OnToggle();

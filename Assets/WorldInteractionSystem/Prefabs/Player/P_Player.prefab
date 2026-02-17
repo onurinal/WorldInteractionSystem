@@ -544,9 +544,10 @@ MonoBehaviour:
   playerCamera: {fileID: 225663565172765498}
   playerData: {fileID: 11400000, guid: 22884ae4e8a5432459b8ec1ff7dbb735, type: 2}
   myAnimator: {fileID: 4246933219257757950}
+  inputProvider: {fileID: 997165070821104559}
   myRigidbody: {fileID: 2066741570367889371}
   playerMovement: {fileID: 8883910846877664827}
-  playerInteraction: {fileID: 8044369384197309023}
+  playerInteractionDetector: {fileID: 8044369384197309023}
 --- !u!114 &997165070821104559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -585,6 +586,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WorldInteractionSystem.Runtime.Player.PlayerInteraction
   interactionCollider: {fileID: 7241431423984923689}
   interactionRange: 4
+  detectionFrequency: 0.1
 --- !u!54 &2066741570367889371
 Rigidbody:
   m_ObjectHideFlags: 0
