@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 1871414033773980729}
   - component: {fileID: 2331122337061869026}
   m_Layer: 0
-  m_Name: P_Door
+  m_Name: P_BaseDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -193,11 +193,13 @@ MonoBehaviour:
   interactionPoint: {fileID: 3397449453458867512}
   meshRenderer: {fileID: 3719758407790915743}
   outlineThickness: 1.03
-  onText: Turn On
-  offText: Turn Off
+  isOn: 0
+  onText: Open Door
+  offText: Close Door
   hingeTransform: {fileID: 6926960002154012658}
   rotateAngle: 90
   rotateTime: 2
+  isLocked: 0
 --- !u!1 &6206009619547758173
 GameObject:
   m_ObjectHideFlags: 0
