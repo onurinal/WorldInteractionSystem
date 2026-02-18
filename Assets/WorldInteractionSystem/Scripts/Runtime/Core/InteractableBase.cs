@@ -13,7 +13,7 @@ namespace WorldInteractionSystem.Runtime.Core
 
         private MaterialPropertyBlock propertyBlock;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             propertyBlock = new MaterialPropertyBlock();
         }

@@ -6,25 +6,31 @@ namespace WorldInteractionSystem.Runtime.Interactable
 {
     public class Door : InteractableToggleBase
     {
-        [Header("Door Strings")]
-        [SerializeField] private string onText = "Open Door";
-        [SerializeField] private string offText = "Close Door";
-        [SerializeField] private string lockedText = "Locked (Require Key)";
-
         [Header("Settings")]
         [SerializeField] private bool isLocked = false;
         [SerializeField] private Transform hingeTransform;
         [SerializeField] private float rotateAngle = 90f;
         [SerializeField] private float rotateTime = 2f;
 
-        public override string GetInteractText()
+        protected override void Awake()
         {
-            if (isLocked && !IsOn)
-            {
-                return lockedText;
-            }
+            base.Awake();
 
-            return base.GetInteractText();
+            InitializeDoorTexts();
+        }
+
+        private void InitializeDoorTexts()
+        {
+            if (isLocked)
+            {
+                OnText = "Locked ( Require Key) !";
+                OffText = string.Empty;
+            }
+            else
+            {
+                OnText = "Open Door";
+                OffText = "Close Door";
+            }
         }
 
         protected override bool TryToggle(bool targetState)
@@ -61,13 +67,10 @@ namespace WorldInteractionSystem.Runtime.Interactable
                 rotateTime);
         }
 
-        private bool HasKey()
+        private static bool HasKey()
         {
             // add key check later
             return false;
         }
-
-        protected override string OnText => onText;
-        protected override string OffText => offText;
     }
 }

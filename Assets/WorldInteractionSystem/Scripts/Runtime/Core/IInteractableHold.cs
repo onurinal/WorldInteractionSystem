@@ -1,6 +1,6 @@
 ﻿namespace WorldInteractionSystem.Runtime.Core
 {
-    public interface IInteractableHold : IInteractable
+    public interface IInteractableHold
     {
         float HoldTime { get; }
     }

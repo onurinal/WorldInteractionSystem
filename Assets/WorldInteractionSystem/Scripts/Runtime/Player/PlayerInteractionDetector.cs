@@ -45,6 +45,10 @@ namespace WorldInteractionSystem.Runtime.Player
 
             nextDetectionTime = Time.time + detectionFrequency;
             UpdateClosestInteractable();
+            if (currentInteractable != null)
+            {
+                Debug.Log(currentInteractable.GetInteractText());
+            }
         }
 
         private void OnTriggerEnter(Collider other)

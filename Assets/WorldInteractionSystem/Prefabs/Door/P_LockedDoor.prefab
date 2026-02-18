@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2331122337061869026, guid: daf364b87939a5140b5c4a47530404c6, type: 3}
       propertyPath: onText
-      value: Unlock (Require Key)
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2331122337061869026, guid: daf364b87939a5140b5c4a47530404c6, type: 3}
       propertyPath: offText
