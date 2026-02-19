@@ -193,13 +193,14 @@ MonoBehaviour:
   interactionPoint: {fileID: 3397449453458867512}
   meshRenderer: {fileID: 3719758407790915743}
   outlineThickness: 1.03
+  onText: 
+  offText: 
   isOn: 0
-  onText: Open Door
-  offText: Close Door
   hingeTransform: {fileID: 6926960002154012658}
   rotateAngle: 90
   rotateTime: 2
   isLocked: 0
+  requiredKey: {fileID: 0}
 --- !u!1 &6206009619547758173
 GameObject:
   m_ObjectHideFlags: 0

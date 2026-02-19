@@ -13,6 +13,7 @@ namespace WorldInteractionSystem.Runtime.Core
 
         private MaterialPropertyBlock propertyBlock;
 
+
         protected virtual void Awake()
         {
             propertyBlock = new MaterialPropertyBlock();
@@ -35,7 +36,9 @@ namespace WorldInteractionSystem.Runtime.Core
             return interactionPoint.position;
         }
 
-        public abstract void Interact();
+
+        public bool CanInteract { get; protected set; } = true;
+        public abstract void Interact(GameObject interactor);
         public abstract string GetInteractText();
     }
 }

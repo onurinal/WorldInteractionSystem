@@ -7,10 +7,13 @@ namespace WorldInteractionSystem.Runtime.Interactable
     public class Door : InteractableToggleBase
     {
         [Header("Settings")]
-        [SerializeField] private bool isLocked = false;
         [SerializeField] private Transform hingeTransform;
         [SerializeField] private float rotateAngle = 90f;
         [SerializeField] private float rotateTime = 2f;
+
+        [Header("Lock Settings")]
+        [SerializeField] private bool isLocked = false;
+        [SerializeField] private ItemData requiredKey;
 
         protected override void Awake()
         {
@@ -23,7 +26,7 @@ namespace WorldInteractionSystem.Runtime.Interactable
         {
             if (isLocked)
             {
-                OnText = "Locked ( Require Key) !";
+                OnText = "Locked (Requires " + requiredKey.ItemName + ")";
                 OffText = string.Empty;
             }
             else
@@ -33,17 +36,26 @@ namespace WorldInteractionSystem.Runtime.Interactable
             }
         }
 
-        protected override bool TryToggle(bool targetState)
+        protected override bool TryToggle(GameObject interactor, bool targetState)
         {
-            if (isLocked && targetState == true)
+            if (!CanInteract)
             {
-                if (HasKey())
-                {
-                    UnlockAndOpen();
-                    return true;
-                }
-
                 return false;
+            }
+
+            if (isLocked && targetState)
+            {
+                if (interactor.TryGetComponent<IInventory>(out var inventory))
+                {
+                    if (inventory.HasItem(requiredKey))
+                    {
+                        UnlockAndOpen();
+                        inventory.RemoveItem(requiredKey, 1);
+                        return true;
+                    }
+
+                    return false;
+                }
             }
 
             PlayAnimation(targetState);
@@ -54,23 +66,22 @@ namespace WorldInteractionSystem.Runtime.Interactable
         {
             isLocked = false;
             PlayAnimation(true);
-
-            this.enabled = false;
-            Debug.Log("Unlocked door, no more interaction");
+            CanInteract = false;
+            ToggleHighlight(false);
         }
 
         private void PlayAnimation(bool state)
         {
+            if (hingeTransform == null)
+            {
+                return;
+            }
+
             hingeTransform.DOKill();
             var targetRotationY = state ? -rotateAngle : 0;
-            hingeTransform.DORotate(new Vector3(transform.rotation.x, targetRotationY, transform.rotation.z),
-                rotateTime);
-        }
-
-        private static bool HasKey()
-        {
-            // add key check later
-            return false;
+            var currentEulerAngles = hingeTransform.eulerAngles;
+            hingeTransform.DOLocalRotate(new Vector3(currentEulerAngles.x, targetRotationY, currentEulerAngles.z),
+                rotateTime).SetEase(Ease.InOutQuad);
         }
     }
 }

@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1529329902805345916}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13744456, y: 0, z: 0, w: 0.9905095}
+  m_LocalRotation: {x: 0.13744454, y: 0.000000012148296, z: 3.8927356e-10, w: 0.9905095}
   m_LocalPosition: {x: 0, y: 2.3384013, z: -4.81109}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -59,7 +59,7 @@ MonoBehaviour:
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
-    FieldOfView: 90
+    FieldOfView: 70
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -282,7 +282,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3338879672334466862}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13744463, y: -0.000000029567136, z: 0.0000000041027817, w: 0.99050945}
+  m_LocalRotation: {x: 0.13744456, y: 0.000000012441878, z: -0.0000000017264532, w: 0.9905095}
   m_LocalPosition: {x: 0, y: 2.3384013, z: -4.81109}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -322,7 +322,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 90
+  field of view: 70
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -541,13 +541,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e61901a2a01b491fa0b32190306e1931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WorldInteractionSystem.Runtime.Player.PlayerController
-  playerCamera: {fileID: 225663565172765498}
-  playerData: {fileID: 11400000, guid: 22884ae4e8a5432459b8ec1ff7dbb735, type: 2}
-  myAnimator: {fileID: 4246933219257757950}
   inputProvider: {fileID: 997165070821104559}
-  myRigidbody: {fileID: 2066741570367889371}
+  playerCamera: {fileID: 225663565172765498}
   playerMovement: {fileID: 8883910846877664827}
   playerInteractionDetector: {fileID: 8044369384197309023}
+  playerData: {fileID: 11400000, guid: 22884ae4e8a5432459b8ec1ff7dbb735, type: 2}
+  myAnimator: {fileID: 4246933219257757950}
+  myRigidbody: {fileID: 2066741570367889371}
 --- !u!114 &997165070821104559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -585,7 +585,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WorldInteractionSystem.Runtime.Player.PlayerInteraction
   interactionCollider: {fileID: 7241431423984923689}
-  interactionRange: 4
+  interactionRange: 3
   detectionFrequency: 0.1
 --- !u!54 &2066741570367889371
 Rigidbody:
@@ -688,8 +688,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4, y: 4, z: 4}
-  m_Center: {x: 0, y: 2, z: 0}
+  m_Size: {x: 3, y: 3, z: 3}
+  m_Center: {x: 0, y: 1.5, z: 1.5}
 --- !u!1001 &7753710828996169071
 PrefabInstance:
   m_ObjectHideFlags: 0

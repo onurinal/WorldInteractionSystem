@@ -2,7 +2,7 @@
 
 namespace WorldInteractionSystem.Runtime.Player
 {
-    [CreateAssetMenu(fileName = "PlayerData", menuName = "WorldInteractionSystem/PlayerData")]
+    [CreateAssetMenu(fileName = "PlayerData", menuName = "WorldInteractionSystem/Player/PlayerData")]
     public class PlayerData : ScriptableObject
     {
         [SerializeField] private float moveSpeed = 8f;

@@ -56,7 +56,10 @@ namespace WorldInteractionSystem.Runtime.Player
             var interactable = other.GetComponentInParent<IInteractable>();
             if (interactable != null)
             {
-                interactablesInRange.Add(interactable);
+                if (interactable.CanInteract)
+                {
+                    interactablesInRange.Add(interactable);
+                }
             }
         }
 
@@ -81,7 +84,7 @@ namespace WorldInteractionSystem.Runtime.Player
         {
             if (currentInteractable != null)
             {
-                currentInteractable.Interact();
+                currentInteractable.Interact(gameObject);
             }
         }
 
@@ -104,6 +107,8 @@ namespace WorldInteractionSystem.Runtime.Player
                 return null;
             }
 
+            interactablesInRange.RemoveWhere(interactable => interactable == null || !interactable.CanInteract);
+
             var playerPosition = transform.position;
             var closestDistance = float.MaxValue;
             IInteractable closestInteractable = null;
@@ -111,6 +116,11 @@ namespace WorldInteractionSystem.Runtime.Player
             foreach (var interactable in interactablesInRange)
             {
                 if (interactable == null)
+                {
+                    continue;
+                }
+
+                if (!interactable.CanInteract)
                 {
                     continue;
                 }
@@ -149,8 +159,9 @@ namespace WorldInteractionSystem.Runtime.Player
         {
             interactionCollider.size = Vector3.one * interactionRange;
 
-            var targetY = interactionRange / 2f;
-            interactionCollider.center = new Vector3(0, targetY, 0);
+            var newPos = interactionRange / 2f;
+            interactionCollider.center =
+                new Vector3(interactionCollider.center.x, newPos, newPos);
         }
     }
 }

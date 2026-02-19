@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &4046463060574630581
+--- !u!1001 &1749868267066887796
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1871414033773980729, guid: daf364b87939a5140b5c4a47530404c6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 6.45517
       objectReference: {fileID: 0}
     - target: {fileID: 1871414033773980729, guid: daf364b87939a5140b5c4a47530404c6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1871414033773980729, guid: daf364b87939a5140b5c4a47530404c6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 5.78
       objectReference: {fileID: 0}
     - target: {fileID: 1871414033773980729, guid: daf364b87939a5140b5c4a47530404c6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -50,24 +50,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2092405575272986361, guid: daf364b87939a5140b5c4a47530404c6, type: 3}
       propertyPath: m_Name
-      value: P_LockedDoor
+      value: PV_UnlockedDoorBase
       objectReference: {fileID: 0}
-    - target: {fileID: 2331122337061869026, guid: daf364b87939a5140b5c4a47530404c6, type: 3}
-      propertyPath: onText
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2331122337061869026, guid: daf364b87939a5140b5c4a47530404c6, type: 3}
-      propertyPath: offText
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2331122337061869026, guid: daf364b87939a5140b5c4a47530404c6, type: 3}
-      propertyPath: isLocked
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3719758407790915743, guid: daf364b87939a5140b5c4a47530404c6, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 7f327b38424f60a4b93aa1421a42b945, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

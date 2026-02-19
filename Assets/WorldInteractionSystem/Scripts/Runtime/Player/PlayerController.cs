@@ -1,18 +1,19 @@
 ﻿using UnityEngine;
+using WorldInteractionSystem.Runtime.Core;
 
 namespace WorldInteractionSystem.Runtime.Player
 {
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : MonoBehaviour, IInventory
     {
-        [SerializeField] private Transform playerCamera;
-        [SerializeField] private PlayerData playerData;
-        [SerializeField] private Animator myAnimator;
-
         [SerializeField] private PlayerInputHandler inputProvider;
-        [SerializeField] private Rigidbody myRigidbody;
+        [SerializeField] private Transform playerCamera;
         [SerializeField] private PlayerMovement playerMovement;
         [SerializeField] private PlayerInteractionDetector playerInteractionDetector;
+        [SerializeField] private PlayerData playerData;
+        [SerializeField] private Animator myAnimator;
+        [SerializeField] private Rigidbody myRigidbody;
 
+        private PlayerInventory playerInventory;
 
         private void Awake()
         {
@@ -55,7 +56,13 @@ namespace WorldInteractionSystem.Runtime.Player
 
         public void Initialize()
         {
+            playerInventory = new PlayerInventory();
             playerMovement.Initialize(inputProvider, playerData, playerCamera, myRigidbody, myAnimator);
         }
+
+        public void AddItem(ItemData item, int amount) => playerInventory.AddItem(item, amount);
+        public void RemoveItem(ItemData item, int amount) => playerInventory.RemoveItem(item, amount);
+        public bool HasItem(ItemData item) => playerInventory.HasItem(item);
+        public int GetAmount(ItemData item) => playerInventory.GetAmount(item);
     }
 }

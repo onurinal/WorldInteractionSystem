@@ -8,11 +8,11 @@ namespace WorldInteractionSystem.Runtime.Core
         [SerializeField] private string offText = "Turn Off";
         [SerializeField] private bool isOn;
 
-        public sealed override void Interact()
+        public sealed override void Interact(GameObject interactor)
         {
             bool targetState = !isOn;
 
-            if (TryToggle(targetState))
+            if (TryToggle(interactor, targetState))
             {
                 isOn = targetState;
             }
@@ -23,7 +23,7 @@ namespace WorldInteractionSystem.Runtime.Core
             return isOn ? OffText : OnText;
         }
 
-        protected abstract bool TryToggle(bool targetState);
+        protected abstract bool TryToggle(GameObject interactor, bool targetState);
 
         protected string OnText
         {
