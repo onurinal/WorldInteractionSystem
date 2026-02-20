@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28630ef21cda4ea2b81bcecd1ea5c603, type: 3}
   m_Name: RedKeyData
   m_EditorClassIdentifier: Assembly-CSharp::WorldInteractionSystem.Runtime.Core.ItemData
+  itemPrefab: {fileID: 265676800948442593, guid: 04e1cb0015bec07438c0984beb298f13, type: 3}
   itemName: Red Key
   itemId: 1

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using WorldInteractionSystem.Runtime.Core;
 
 namespace WorldInteractionSystem.Runtime.Interactable
@@ -7,18 +8,24 @@ namespace WorldInteractionSystem.Runtime.Interactable
     {
         private static readonly int OpenChest = Animator.StringToHash("OpenChest");
 
+        [Header("References")]
         [SerializeField] private Animator chestAnimator;
 
+        [SerializeField] private UnityEvent<GameObject> onChestOpened;
 
         protected override void OnHoldCompleted(GameObject interactor)
         {
-            TriggerAnimation();
             CanInteract = false;
+            TriggerAnimation();
+            onChestOpened?.Invoke(interactor);
         }
 
         private void TriggerAnimation()
         {
-            chestAnimator.SetTrigger(OpenChest);
+            if (chestAnimator != null)
+            {
+                chestAnimator.SetTrigger(OpenChest);
+            }
         }
     }
 }

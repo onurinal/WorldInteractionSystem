@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 28630ef21cda4ea2b81bcecd1ea5c603, type: 3}
-  m_Name: YellowKeyData
+  m_Name: BlueKeyData
   m_EditorClassIdentifier: Assembly-CSharp::WorldInteractionSystem.Runtime.Core.ItemData
-  itemPrefab: {fileID: 6871635399352877821, guid: 467be84d009142544a87955034b8f217, type: 3}
+  itemPrefab: {fileID: 6252029926141487498, guid: 40bb0341115ff5c40b174e5e614becd8, type: 3}
   itemName: Yellow Key
-  itemId: 2
+  itemId: 3
