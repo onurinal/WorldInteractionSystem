@@ -14,7 +14,7 @@ namespace WorldInteractionSystem.Runtime.Core
 
             if (TryToggle(interactor, targetState))
             {
-                isOn = targetState;
+                SetToggleState(targetState);
             }
         }
 
@@ -23,7 +23,19 @@ namespace WorldInteractionSystem.Runtime.Core
             return isOn ? OffText : OnText;
         }
 
+        public void SetToggleState(bool targetState)
+        {
+            if (isOn == targetState)
+            {
+                return;
+            }
+
+            isOn = targetState;
+            PlayAnimation(targetState);
+        }
+
         protected abstract bool TryToggle(GameObject interactor, bool targetState);
+        protected abstract void PlayAnimation(bool state);
 
         protected string OnText
         {
@@ -36,5 +48,7 @@ namespace WorldInteractionSystem.Runtime.Core
             get => offText;
             set => offText = value;
         }
+
+        public bool IsOn => isOn;
     }
 }

@@ -198,7 +198,7 @@ MonoBehaviour:
   isOn: 0
   hingeTransform: {fileID: 6926960002154012658}
   rotateAngle: 90
-  rotateTime: 2
+  rotateTime: 1
   isLocked: 0
   requiredKey: {fileID: 0}
 --- !u!1 &6206009619547758173

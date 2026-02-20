@@ -9,7 +9,7 @@ namespace WorldInteractionSystem.Runtime.Interactable
         [Header("Settings")]
         [SerializeField] private Transform hingeTransform;
         [SerializeField] private float rotateAngle = 90f;
-        [SerializeField] private float rotateTime = 2f;
+        [SerializeField] private float rotateTime = 1f;
 
         [Header("Lock Settings")]
         [SerializeField] private bool isLocked = false;
@@ -19,10 +19,10 @@ namespace WorldInteractionSystem.Runtime.Interactable
         {
             base.Awake();
 
-            InitializeDoorTexts();
+            InitializeInteractableTexts();
         }
 
-        private void InitializeDoorTexts()
+        private void InitializeInteractableTexts()
         {
             if (isLocked)
             {
@@ -58,19 +58,17 @@ namespace WorldInteractionSystem.Runtime.Interactable
                 }
             }
 
-            PlayAnimation(targetState);
             return true;
         }
 
         private void UnlockAndOpen()
         {
             isLocked = false;
-            PlayAnimation(true);
             CanInteract = false;
             ToggleHighlight(false);
         }
 
-        private void PlayAnimation(bool state)
+        protected override void PlayAnimation(bool state)
         {
             if (hingeTransform == null)
             {
@@ -79,7 +77,7 @@ namespace WorldInteractionSystem.Runtime.Interactable
 
             hingeTransform.DOKill();
             var targetRotationY = state ? -rotateAngle : 0;
-            var currentEulerAngles = hingeTransform.eulerAngles;
+            var currentEulerAngles = hingeTransform.localEulerAngles;
             hingeTransform.DOLocalRotate(new Vector3(currentEulerAngles.x, targetRotationY, currentEulerAngles.z),
                 rotateTime).SetEase(Ease.InOutQuad);
         }
