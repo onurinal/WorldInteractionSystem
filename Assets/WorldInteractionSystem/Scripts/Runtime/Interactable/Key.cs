@@ -13,7 +13,7 @@ namespace WorldInteractionSystem.Runtime.Interactable
             InteractText = $"Pick Up {keyData.ItemName}";
         }
 
-        public override void Interact(GameObject interactor)
+        public override void InteractStart(GameObject interactor)
         {
             if (interactor.TryGetComponent<IInventory>(out var inventory))
             {

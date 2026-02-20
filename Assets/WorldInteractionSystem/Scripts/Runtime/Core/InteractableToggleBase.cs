@@ -8,7 +8,7 @@ namespace WorldInteractionSystem.Runtime.Core
         [SerializeField] private string offText = "Turn Off";
         [SerializeField] private bool isOn;
 
-        public sealed override void Interact(GameObject interactor)
+        public sealed override void InteractStart(GameObject interactor)
         {
             bool targetState = !isOn;
 

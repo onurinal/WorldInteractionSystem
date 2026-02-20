@@ -585,7 +585,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WorldInteractionSystem.Runtime.Player.PlayerInteraction
   interactionCollider: {fileID: 7241431423984923689}
-  interactionRange: 3
+  interactionRange: 4
   detectionFrequency: 0.1
 --- !u!54 &2066741570367889371
 Rigidbody:

@@ -27,12 +27,14 @@ namespace WorldInteractionSystem.Runtime.Player
 
         private void OnEnable()
         {
-            EventManager.OnInteract += Interact;
+            EventManager.OnInteractStart += InteractStart;
+            EventManager.OnInteractCancel += InteractCancel;
         }
 
         private void OnDisable()
         {
-            EventManager.OnInteract -= Interact;
+            EventManager.OnInteractStart -= InteractStart;
+            EventManager.OnInteractCancel -= InteractCancel;
             ClearCurrentInteractable();
         }
 
@@ -45,10 +47,6 @@ namespace WorldInteractionSystem.Runtime.Player
 
             nextDetectionTime = Time.time + detectionFrequency;
             UpdateClosestInteractable();
-            if (currentInteractable != null)
-            {
-                Debug.Log(currentInteractable.GetInteractText());
-            }
         }
 
         private void OnTriggerEnter(Collider other)
@@ -76,38 +74,48 @@ namespace WorldInteractionSystem.Runtime.Player
 
             if (currentInteractable == interactable)
             {
+                InteractCancel();
                 ClearCurrentInteractable();
             }
         }
 
-        private void Interact()
+        private void InteractStart()
         {
             if (currentInteractable != null)
             {
-                currentInteractable.Interact(gameObject);
+                currentInteractable.InteractStart(gameObject);
+            }
+        }
+
+        private void InteractCancel()
+        {
+            if (currentInteractable != null)
+            {
+                currentInteractable.InteractCancel(gameObject);
             }
         }
 
         private void UpdateClosestInteractable()
         {
-            IInteractable interactable = GetClosestInteractable();
+            IInteractable closest = GetClosestInteractable();
 
-            if (currentInteractable == interactable)
+            if (currentInteractable == closest)
             {
                 return;
             }
 
-            ChangeCurrentInteractable(interactable);
+            ChangeCurrentInteractable(closest);
         }
 
         private IInteractable GetClosestInteractable()
         {
+            interactablesInRange.RemoveWhere(interactable => interactable == null || !interactable.CanInteract);
+
             if (interactablesInRange.Count == 0)
             {
                 return null;
             }
 
-            interactablesInRange.RemoveWhere(interactable => interactable == null || !interactable.CanInteract);
 
             var playerPosition = transform.position;
             var closestDistance = float.MaxValue;
@@ -115,16 +123,6 @@ namespace WorldInteractionSystem.Runtime.Player
 
             foreach (var interactable in interactablesInRange)
             {
-                if (interactable == null)
-                {
-                    continue;
-                }
-
-                if (!interactable.CanInteract)
-                {
-                    continue;
-                }
-
                 var distance = (interactable.GetInteractionPosition() - playerPosition).sqrMagnitude;
 
                 if (distance < closestDistance)
@@ -139,6 +137,7 @@ namespace WorldInteractionSystem.Runtime.Player
 
         private void ChangeCurrentInteractable(IInteractable interactable)
         {
+            InteractCancel();
             currentInteractable?.ToggleHighlight(false);
             currentInteractable = interactable;
             currentInteractable?.ToggleHighlight(true);

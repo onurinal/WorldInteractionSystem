@@ -8,7 +8,7 @@ namespace WorldInteractionSystem.Runtime.Core
 
         [Header("Outline Settings")]
         private static readonly int OutlineThicknessId = Shader.PropertyToID("_OutlineThickness");
-        [SerializeField] private MeshRenderer meshRenderer;
+        [SerializeField] private Renderer meshRenderer;
         [SerializeField] private float outlineThickness = 1.02f;
 
         private MaterialPropertyBlock propertyBlock;
@@ -38,7 +38,12 @@ namespace WorldInteractionSystem.Runtime.Core
 
 
         public bool CanInteract { get; protected set; } = true;
-        public abstract void Interact(GameObject interactor);
+        public abstract void InteractStart(GameObject interactor);
+
+        public virtual void InteractCancel(GameObject interactor)
+        {
+        }
+
         public abstract string GetInteractText();
     }
 }
