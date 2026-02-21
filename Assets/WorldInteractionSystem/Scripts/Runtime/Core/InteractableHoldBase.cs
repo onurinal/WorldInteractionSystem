@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using WorldInteractionSystem.Runtime.Manager;
 
 namespace WorldInteractionSystem.Runtime.Core
 {
@@ -36,6 +37,8 @@ namespace WorldInteractionSystem.Runtime.Core
             while (elapsedTime < holdTime)
             {
                 elapsedTime += Time.deltaTime;
+                float progress = elapsedTime / holdTime;
+                EventManager.TriggerOnInteractProgress(progress);
                 yield return null;
             }
 

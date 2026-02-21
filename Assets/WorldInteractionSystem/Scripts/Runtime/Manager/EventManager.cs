@@ -6,11 +6,13 @@ namespace WorldInteractionSystem.Runtime.Manager
     public static class EventManager
     {
         public static event Action OnInteractStart;
+        public static event Action<float> OnInteractProgress;
         public static event Action OnInteractCancel;
         public static event Action<IInteractable> OnInteractDestroyed;
 
         public static event Action<string> OnInteractDetected;
         public static event Action OnInteractCleared;
+
 
         public static void TriggerOnInteract()
         {
@@ -36,6 +38,11 @@ namespace WorldInteractionSystem.Runtime.Manager
         public static void TriggerOnInteractCleared()
         {
             OnInteractCleared?.Invoke();
+        }
+
+        public static void TriggerOnInteractProgress(float duration)
+        {
+            OnInteractProgress?.Invoke(duration);
         }
     }
 }

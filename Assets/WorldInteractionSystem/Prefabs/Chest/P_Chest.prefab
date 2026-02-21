@@ -125,7 +125,7 @@ MonoBehaviour:
   interactionPoint: {fileID: 6895882752525577980}
   meshRenderer: {fileID: 4119221283233939586}
   outlineThickness: 1.02
-  holdTime: 1.5
+  holdTime: 2
   chestAnimator: {fileID: 1159006549808224820}
   onChestOpened:
     m_PersistentCalls:

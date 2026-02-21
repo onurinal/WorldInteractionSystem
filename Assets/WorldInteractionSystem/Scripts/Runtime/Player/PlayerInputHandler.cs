@@ -42,7 +42,7 @@ namespace WorldInteractionSystem.Runtime.Player
 
         public void OnInteract(InputAction.CallbackContext context)
         {
-            if (context.performed)
+            if (context.started)
             {
                 EventManager.TriggerOnInteract();
             }
