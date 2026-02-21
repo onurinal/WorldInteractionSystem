@@ -6,7 +6,7 @@ namespace WorldInteractionSystem.Runtime.Core
     {
         [SerializeField] private string interactText;
 
-        public override string GetInteractText()
+        public override string GetInteractText(GameObject interactor)
         {
             return InteractText;
         }

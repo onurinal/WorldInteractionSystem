@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using WorldInteractionSystem.Runtime.Manager;
 
 namespace WorldInteractionSystem.Runtime.Core
 {
@@ -13,10 +15,16 @@ namespace WorldInteractionSystem.Runtime.Core
 
         private MaterialPropertyBlock propertyBlock;
 
+        public event Action OnStateChanged;
 
         protected virtual void Awake()
         {
             propertyBlock = new MaterialPropertyBlock();
+        }
+
+        protected void OnDisable()
+        {
+            EventManager.TriggerOnInteractDestroyed(this);
         }
 
         public void ToggleHighlight(bool active)
@@ -36,7 +44,6 @@ namespace WorldInteractionSystem.Runtime.Core
             return interactionPoint.position;
         }
 
-
         public bool CanInteract { get; protected set; } = true;
         public abstract void InteractStart(GameObject interactor);
 
@@ -44,6 +51,11 @@ namespace WorldInteractionSystem.Runtime.Core
         {
         }
 
-        public abstract string GetInteractText();
+        public abstract string GetInteractText(GameObject interactor);
+
+        protected void TriggerOnStateChanged()
+        {
+            OnStateChanged?.Invoke();
+        }
     }
 }

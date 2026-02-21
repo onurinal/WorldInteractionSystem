@@ -15,25 +15,26 @@ namespace WorldInteractionSystem.Runtime.Interactable
         [SerializeField] private bool isLocked = false;
         [SerializeField] private ItemData requiredKey;
 
+        private string lockedText;
+        private string unlockedText;
+
         protected override void Awake()
         {
             base.Awake();
-
-            InitializeInteractableTexts();
+            InitializeInteractText();
         }
 
-        private void InitializeInteractableTexts()
+        private void InitializeInteractText()
         {
-            if (isLocked)
+            if (isLocked && requiredKey != null)
             {
-                OnText = "Locked (Requires " + requiredKey.ItemName + ")";
-                OffText = string.Empty;
+                lockedText = $"Locked. You need {requiredKey.ItemName} to open";
+                unlockedText = $"You can unlock with {requiredKey.ItemName}";
+                return;
             }
-            else
-            {
-                OnText = "Open Door";
-                OffText = "Close Door";
-            }
+
+            OnText = "Open Door";
+            OffText = "Close Door";
         }
 
         protected override bool TryToggle(GameObject interactor, bool targetState)
@@ -66,6 +67,24 @@ namespace WorldInteractionSystem.Runtime.Interactable
             isLocked = false;
             CanInteract = false;
             ToggleHighlight(false);
+        }
+
+        public override string GetInteractText(GameObject interactor)
+        {
+            if (isLocked)
+            {
+                if (interactor.TryGetComponent<IInventory>(out var inventory))
+                {
+                    if (inventory.HasItem(requiredKey))
+                    {
+                        return unlockedText;
+                    }
+
+                    return lockedText;
+                }
+            }
+
+            return IsOn ? OnText : OffText;
         }
 
         protected override void PlayAnimation(bool state)

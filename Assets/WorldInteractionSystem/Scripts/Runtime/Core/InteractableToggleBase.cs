@@ -15,10 +15,11 @@ namespace WorldInteractionSystem.Runtime.Core
             if (TryToggle(interactor, targetState))
             {
                 SetToggleState(targetState);
+                TriggerOnStateChanged();
             }
         }
 
-        public override string GetInteractText()
+        public override string GetInteractText(GameObject interactor)
         {
             return isOn ? OffText : OnText;
         }

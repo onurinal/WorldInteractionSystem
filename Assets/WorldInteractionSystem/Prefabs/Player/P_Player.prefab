@@ -501,6 +501,7 @@ GameObject:
   - component: {fileID: 997165070821104559}
   - component: {fileID: 8883910846877664827}
   - component: {fileID: 8044369384197309023}
+  - component: {fileID: 8713486780384184285}
   - component: {fileID: 2066741570367889371}
   - component: {fileID: 2951969613298189361}
   m_Layer: 0
@@ -544,7 +545,7 @@ MonoBehaviour:
   inputProvider: {fileID: 997165070821104559}
   playerCamera: {fileID: 225663565172765498}
   playerMovement: {fileID: 8883910846877664827}
-  playerInteractionDetector: {fileID: 8044369384197309023}
+  playerInteractor: {fileID: 8044369384197309023}
   playerData: {fileID: 11400000, guid: 22884ae4e8a5432459b8ec1ff7dbb735, type: 2}
   myAnimator: {fileID: 4246933219257757950}
   myRigidbody: {fileID: 2066741570367889371}
@@ -584,9 +585,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e209a0c89d574b9d964b724093da6c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WorldInteractionSystem.Runtime.Player.PlayerInteraction
+  detectionFrequency: 0.1
+--- !u!114 &8713486780384184285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7516307126024396625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f9be54d2368450988fe8edbbbcd8254, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WorldInteractionSystem.Runtime.Player.InteractionSensor
   interactionCollider: {fileID: 7241431423984923689}
   interactionRange: 4
-  detectionFrequency: 0.1
 --- !u!54 &2066741570367889371
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: BlueKeyData
   m_EditorClassIdentifier: Assembly-CSharp::WorldInteractionSystem.Runtime.Core.ItemData
   itemPrefab: {fileID: 6252029926141487498, guid: 40bb0341115ff5c40b174e5e614becd8, type: 3}
-  itemName: Yellow Key
+  itemName: Blue Key
   itemId: 3

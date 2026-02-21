@@ -20,6 +20,11 @@ namespace WorldInteractionSystem.Runtime.Interactable
             onChestOpened?.Invoke(interactor);
         }
 
+        public override string GetInteractText(GameObject interactor)
+        {
+            return $"Hold Interact button {HoldTime} seconds to open";
+        }
+
         private void TriggerAnimation()
         {
             if (chestAnimator != null)

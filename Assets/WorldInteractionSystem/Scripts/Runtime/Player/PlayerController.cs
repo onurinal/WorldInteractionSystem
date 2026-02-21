@@ -8,7 +8,7 @@ namespace WorldInteractionSystem.Runtime.Player
         [SerializeField] private PlayerInputHandler inputProvider;
         [SerializeField] private Transform playerCamera;
         [SerializeField] private PlayerMovement playerMovement;
-        [SerializeField] private PlayerInteractionDetector playerInteractionDetector;
+        [SerializeField] private PlayerInteractor playerInteractor;
         [SerializeField] private PlayerData playerData;
         [SerializeField] private Animator myAnimator;
         [SerializeField] private Rigidbody myRigidbody;
@@ -48,7 +48,7 @@ namespace WorldInteractionSystem.Runtime.Player
                 Debug.LogError($"{nameof(PlayerController)}: PlayerMovement component is missing.", this);
             }
 
-            if (playerInteractionDetector == null)
+            if (playerInteractor == null)
             {
                 Debug.LogError($"{nameof(PlayerController)}: PlayerInteraction component is missing.", this);
             }

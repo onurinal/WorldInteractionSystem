@@ -43,12 +43,6 @@ namespace WorldInteractionSystem.Runtime.Core
             OnHoldCompleted(interactor);
         }
 
-        public override string GetInteractText()
-        {
-            return $"Hold button {holdTime} seconds to interact";
-        }
-
-
         public float HoldTime => holdTime;
         protected abstract void OnHoldCompleted(GameObject interactor);
     }

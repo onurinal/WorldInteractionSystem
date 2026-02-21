@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace WorldInteractionSystem.Runtime.Core
 {
@@ -7,8 +8,9 @@ namespace WorldInteractionSystem.Runtime.Core
         void InteractStart(GameObject interactor);
         void InteractCancel(GameObject interactor);
         void ToggleHighlight(bool active);
-        string GetInteractText();
+        string GetInteractText(GameObject interactor);
         Vector3 GetInteractionPosition();
         bool CanInteract { get; }
+        event Action OnStateChanged;
     }
 }
