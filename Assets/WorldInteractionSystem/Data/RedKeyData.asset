@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28630ef21cda4ea2b81bcecd1ea5c603, type: 3}
+  m_Script: {fileID: 11500000, guid: 22121c125c2e49b8b591066ccc053e44, type: 3}
   m_Name: RedKeyData
-  m_EditorClassIdentifier: Assembly-CSharp::WorldInteractionSystem.Runtime.Core.ItemData
+  m_EditorClassIdentifier: Assembly-CSharp::WorldInteractionSystem.Runtime.Core.KeyData
   itemPrefab: {fileID: 265676800948442593, guid: 04e1cb0015bec07438c0984beb298f13, type: 3}
   itemName: Red Key
-  itemId: 1
+  itemId: 2
+  itemDescription: Red Key
+  itemType: 0

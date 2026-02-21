@@ -5,7 +5,7 @@ namespace WorldInteractionSystem.Runtime.Interactable
 {
     public class Key : InteractableInstantBase
     {
-        [SerializeField] private ItemData keyData;
+        [SerializeField] private KeyData keyData;
 
         protected override void Awake()
         {

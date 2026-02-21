@@ -13,7 +13,7 @@ namespace WorldInteractionSystem.Runtime.Interactable
 
         [Header("Lock Settings")]
         [SerializeField] private bool isLocked = false;
-        [SerializeField] private ItemData requiredKey;
+        [SerializeField] private KeyData requiredKey;
 
         private string lockedText;
         private string unlockedText;
