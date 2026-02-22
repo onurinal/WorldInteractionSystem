@@ -3,21 +3,28 @@ using WorldInteractionSystem.Runtime.Core;
 
 namespace WorldInteractionSystem.Runtime.Player
 {
-    public class PlayerController : MonoBehaviour, IInventory
+    public class PlayerController : MonoBehaviour
     {
-        [SerializeField] private PlayerInputHandler inputProvider;
         [SerializeField] private Transform playerCamera;
         [SerializeField] private PlayerMovement playerMovement;
-        [SerializeField] private PlayerInteractor playerInteractor;
         [SerializeField] private PlayerData playerData;
         [SerializeField] private Animator myAnimator;
         [SerializeField] private Rigidbody myRigidbody;
+        [SerializeField] private PlayerInteractor playerInteractor;
 
-        private PlayerInventory playerInventory;
+        private IInputProvider inputProvider;
+        private IInventory playerInventory;
 
         private void Awake()
         {
+            CacheReferences();
             ValidateReferences();
+        }
+
+        private void CacheReferences()
+        {
+            inputProvider = GetComponent<IInputProvider>();
+            playerInventory = GetComponentInParent<IInventory>();
         }
 
 
@@ -56,13 +63,7 @@ namespace WorldInteractionSystem.Runtime.Player
 
         public void Initialize()
         {
-            playerInventory = new PlayerInventory();
             playerMovement.Initialize(inputProvider, playerData, playerCamera, myRigidbody, myAnimator);
         }
-
-        public void AddItem(ItemData item, int amount) => playerInventory.AddItem(item, amount);
-        public void RemoveItem(ItemData item, int amount) => playerInventory.RemoveItem(item, amount);
-        public bool HasItem(ItemData item) => playerInventory.HasItem(item);
-        public int GetAmount(ItemData item) => playerInventory.GetAmount(item);
     }
 }

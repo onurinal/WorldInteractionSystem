@@ -2,13 +2,15 @@
 
 namespace WorldInteractionSystem.Runtime.Core
 {
-    public class ItemData : ScriptableObject
+    public abstract class ItemData : ScriptableObject
     {
         [SerializeField] private GameObject itemPrefab;
         [SerializeField] private string itemName;
         [SerializeField] private int itemId;
         [TextArea(3, 2)] [SerializeField] private string itemDescription;
         [SerializeField] private ItemType itemType;
+        [SerializeField] private int maxStackSize = 99;
+        [SerializeField] private bool isStackable = true;
 
         public GameObject ItemPrefab => itemPrefab;
         public string ItemName => itemName;
@@ -21,5 +23,7 @@ namespace WorldInteractionSystem.Runtime.Core
         }
 
         public string ItemDescription => itemDescription;
+        public int MaxStackSize => maxStackSize;
+        public bool IsStackable => isStackable;
     }
 }

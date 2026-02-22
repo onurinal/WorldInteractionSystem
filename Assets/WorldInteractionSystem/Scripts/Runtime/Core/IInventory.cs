@@ -2,9 +2,8 @@
 {
     public interface IInventory
     {
-        void AddItem(ItemData item, int amount);
+        bool AddItem(ItemData item, int amount);
         void RemoveItem(ItemData item, int amount);
-        bool HasItem(ItemData item);
-        int GetAmount(ItemData item);
+        bool HasItem(ItemData item, int amount);
     }
 }

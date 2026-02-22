@@ -13,8 +13,10 @@ namespace WorldInteractionSystem.Runtime.Manager
         public static event Action<string> OnInteractDetected;
         public static event Action OnInteractCleared;
 
+        public static event Action OnInventoryChanged;
 
-        public static void TriggerOnInteract()
+
+        public static void TriggerOnInteractStart()
         {
             OnInteractStart?.Invoke();
         }
@@ -43,6 +45,11 @@ namespace WorldInteractionSystem.Runtime.Manager
         public static void TriggerOnInteractProgress(float duration)
         {
             OnInteractProgress?.Invoke(duration);
+        }
+
+        public static void TriggerOnInventoryChanged()
+        {
+            OnInventoryChanged?.Invoke();
         }
     }
 }

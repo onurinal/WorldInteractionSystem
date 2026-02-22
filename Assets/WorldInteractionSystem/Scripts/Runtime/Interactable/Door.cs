@@ -6,13 +6,13 @@ namespace WorldInteractionSystem.Runtime.Interactable
 {
     public class Door : InteractableToggleBase
     {
-        [Header("Settings")]
-        [SerializeField] private Transform hingeTransform;
+        [Header("Settings")] [SerializeField] private Transform hingeTransform;
         [SerializeField] private float rotateAngle = 90f;
         [SerializeField] private float rotateTime = 1f;
 
-        [Header("Lock Settings")]
-        [SerializeField] private bool isLocked = false;
+        [Header("Lock Settings")] [SerializeField]
+        private bool isLocked = false;
+
         [SerializeField] private KeyData requiredKey;
 
         private string lockedText;
@@ -48,7 +48,7 @@ namespace WorldInteractionSystem.Runtime.Interactable
             {
                 if (interactor.TryGetComponent<IInventory>(out var inventory))
                 {
-                    if (inventory.HasItem(requiredKey))
+                    if (inventory.HasItem(requiredKey, 1))
                     {
                         UnlockAndOpen();
                         inventory.RemoveItem(requiredKey, 1);
@@ -75,7 +75,7 @@ namespace WorldInteractionSystem.Runtime.Interactable
             {
                 if (interactor.TryGetComponent<IInventory>(out var inventory))
                 {
-                    if (inventory.HasItem(requiredKey))
+                    if (inventory.HasItem(requiredKey, 1))
                     {
                         return unlockedText;
                     }

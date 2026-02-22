@@ -44,7 +44,7 @@ namespace WorldInteractionSystem.Runtime.Player
         {
             if (context.started)
             {
-                EventManager.TriggerOnInteract();
+                EventManager.TriggerOnInteractStart();
             }
             else if (context.canceled)
             {

@@ -17,3 +17,5 @@ MonoBehaviour:
   itemId: 2
   itemDescription: Red Key
   itemType: 0
+  maxStackSize: 4
+  isStackable: 1
