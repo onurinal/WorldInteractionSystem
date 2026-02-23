@@ -14,6 +14,7 @@ namespace WorldInteractionSystem.Runtime.Interactable
         private bool isLocked = false;
 
         [SerializeField] private KeyData requiredKey;
+        [SerializeField] private int requiredAmount = 1;
 
         private string lockedText;
         private string unlockedText;
@@ -48,10 +49,11 @@ namespace WorldInteractionSystem.Runtime.Interactable
             {
                 if (interactor.TryGetComponent<IInventory>(out var inventory))
                 {
-                    if (inventory.HasItem(requiredKey, 1))
+                    if (inventory.HasItem(requiredKey, requiredAmount))
                     {
                         UnlockAndOpen();
-                        inventory.RemoveItem(requiredKey, 1);
+                        inventory.RemoveItem(requiredKey, requiredAmount);
+
                         return true;
                     }
 

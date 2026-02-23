@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using WorldInteractionSystem.Runtime.Core;
 
 namespace WorldInteractionSystem.Runtime.Manager
@@ -13,7 +14,8 @@ namespace WorldInteractionSystem.Runtime.Manager
         public static event Action<string> OnInteractDetected;
         public static event Action OnInteractCleared;
 
-        public static event Action OnInventoryChanged;
+        public static event Action<IReadOnlyList<InventorySlot>> OnInventoryChanged;
+        public static event Action<int> OnInventoryInitialized;
 
 
         public static void TriggerOnInteractStart()
@@ -47,9 +49,14 @@ namespace WorldInteractionSystem.Runtime.Manager
             OnInteractProgress?.Invoke(duration);
         }
 
-        public static void TriggerOnInventoryChanged()
+        public static void TriggerOnInventoryChanged(IReadOnlyList<InventorySlot> slots)
         {
-            OnInventoryChanged?.Invoke();
+            OnInventoryChanged?.Invoke(slots);
+        }
+
+        public static void TriggerOnInventoryInitialized(int capacity)
+        {
+            OnInventoryInitialized?.Invoke(capacity);
         }
     }
 }

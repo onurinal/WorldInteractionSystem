@@ -7,6 +7,7 @@ namespace WorldInteractionSystem.Runtime.Core
         [SerializeField] private GameObject itemPrefab;
         [SerializeField] private string itemName;
         [SerializeField] private int itemId;
+        [SerializeField] private Sprite itemSprite;
         [TextArea(3, 2)] [SerializeField] private string itemDescription;
         [SerializeField] private ItemType itemType;
         [SerializeField] private int maxStackSize = 99;
@@ -15,6 +16,7 @@ namespace WorldInteractionSystem.Runtime.Core
         public GameObject ItemPrefab => itemPrefab;
         public string ItemName => itemName;
         public int ItemId => itemId;
+        public Sprite ItemSprite => itemSprite;
 
         public ItemType ItemType
         {

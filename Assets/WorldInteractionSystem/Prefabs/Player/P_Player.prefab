@@ -549,6 +549,7 @@ MonoBehaviour:
   myAnimator: {fileID: 4246933219257757950}
   myRigidbody: {fileID: 2066741570367889371}
   playerInteractor: {fileID: 8044369384197309023}
+  playerInventory: {fileID: 5851294205166100831}
 --- !u!114 &997165070821104559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -612,7 +613,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 469d327960254ee0b9e78aa22d8d9420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WorldInteractionSystem.Runtime.Core.InventoryController
-  capacity: 20
+  capacity: 24
   inventorySlots: []
 --- !u!54 &2066741570367889371
 Rigidbody:

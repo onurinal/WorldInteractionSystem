@@ -17,7 +17,13 @@ namespace WorldInteractionSystem.Runtime.Interactable
         {
             if (interactor.TryGetComponent<IInventory>(out var inventory))
             {
-                inventory.AddItem(keyData, 1);
+                int added = inventory.AddItem(keyData, 1);
+
+                if (added < 0)
+                {
+                    Debug.Log($"You didn't pick up");
+                    return;
+                }
             }
 
             CanInteract = false;

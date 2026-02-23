@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PV_BlueKey
       objectReference: {fileID: 0}
+    - target: {fileID: 1400582482283125611, guid: f9e7655e614a97848aa3e4f9d03e5782, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 54c1a7aba2eba3148ac4d4b1bc6be169, type: 2}
     - target: {fileID: 1745855546375515568, guid: f9e7655e614a97848aa3e4f9d03e5782, type: 3}
       propertyPath: keyData
       value: 

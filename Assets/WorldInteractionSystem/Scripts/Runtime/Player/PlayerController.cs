@@ -11,9 +11,9 @@ namespace WorldInteractionSystem.Runtime.Player
         [SerializeField] private Animator myAnimator;
         [SerializeField] private Rigidbody myRigidbody;
         [SerializeField] private PlayerInteractor playerInteractor;
+        [SerializeField] private InventoryController playerInventory;
 
         private IInputProvider inputProvider;
-        private IInventory playerInventory;
 
         private void Awake()
         {
@@ -24,7 +24,6 @@ namespace WorldInteractionSystem.Runtime.Player
         private void CacheReferences()
         {
             inputProvider = GetComponent<IInputProvider>();
-            playerInventory = GetComponentInParent<IInventory>();
         }
 
 
@@ -63,6 +62,7 @@ namespace WorldInteractionSystem.Runtime.Player
 
         public void Initialize()
         {
+            playerInventory.Initialize();
             playerMovement.Initialize(inputProvider, playerData, playerCamera, myRigidbody, myAnimator);
         }
     }

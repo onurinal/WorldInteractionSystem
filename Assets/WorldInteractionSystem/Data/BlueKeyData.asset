@@ -15,5 +15,8 @@ MonoBehaviour:
   itemPrefab: {fileID: 6252029926141487498, guid: 40bb0341115ff5c40b174e5e614becd8, type: 3}
   itemName: Blue Key
   itemId: 3
+  itemSprite: {fileID: 21300000, guid: 29554145f1615de4cb96045fa1d00fcd, type: 3}
   itemDescription: Blue Key
   itemType: 0
+  maxStackSize: 99
+  isStackable: 1

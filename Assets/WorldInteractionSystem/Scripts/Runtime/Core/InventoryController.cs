@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using WorldInteractionSystem.Runtime.Manager;
 
@@ -6,100 +7,117 @@ namespace WorldInteractionSystem.Runtime.Core
 {
     public class InventoryController : MonoBehaviour, IInventory
     {
-        [SerializeField] private int capacity = 20;
+        private const int Capacity = 10;
         [SerializeField] private List<InventorySlot> inventorySlots = new();
 
-        public bool AddItem(ItemData itemData, int amount)
+        public IReadOnlyList<InventorySlot> Slots => inventorySlots;
+
+        public void Initialize()
         {
-            if (itemData == null)
-            {
-                throw new System.ArgumentNullException(nameof(itemData));
-            }
+            InitializeInventory();
+        }
 
-            if (amount <= 0)
-            {
-                return false;
-            }
+        private static void InitializeInventory()
+        {
+            EventManager.TriggerOnInventoryInitialized(Capacity);
+        }
 
-            int initialAmount = amount;
+        public int AddItem(ItemData itemData, int amount)
+        {
+            Validate(itemData, amount);
+
             int remainingAmount = amount;
 
-            // 1. Try to fill existing stacks first
             if (itemData.IsStackable)
             {
-                foreach (var slot in inventorySlots)
-                {
-                    if (slot.ItemData == itemData && slot.Amount < itemData.MaxStackSize)
-                    {
-                        int canAdd = itemData.MaxStackSize - slot.Amount;
-                        int toAdd = Mathf.Min(canAdd, remainingAmount);
-
-                        slot.AddAmount(toAdd);
-                        remainingAmount -= toAdd;
-
-                        if (remainingAmount <= 0)
-                        {
-                            OnInventoryChanged();
-                            return true;
-                        }
-                    }
-                }
+                remainingAmount = FillExistingStacks(itemData, remainingAmount);
             }
 
-            // 2. Add remaining amount to new slots
+            remainingAmount = FillNewSlots(itemData, remainingAmount);
+
+            int added = amount - remainingAmount;
+
+            if (added <= 0)
+            {
+                return 0;
+            }
+
+            OnInventoryChanged();
+            if (remainingAmount > 0)
+            {
+                Debug.LogWarning(
+                    $"{remainingAmount}/{amount} '{itemData.ItemName}' could not be added — inventory full.");
+            }
+
+            return added;
+        }
+
+        private int FillExistingStacks(ItemData itemData, int remainingAmount)
+        {
+            foreach (var slot in inventorySlots)
+            {
+                if (remainingAmount <= 0)
+                {
+                    break;
+                }
+
+                if (slot.ItemData != itemData || slot.Amount >= itemData.MaxStackSize)
+                {
+                    continue;
+                }
+
+                int canAdd = itemData.MaxStackSize - slot.Amount;
+                int toAdd = Mathf.Min(canAdd, remainingAmount);
+
+                slot.AddAmount(toAdd);
+                remainingAmount -= toAdd;
+            }
+
+            return remainingAmount;
+        }
+
+        private int FillNewSlots(ItemData itemData, int remainingAmount)
+        {
             while (remainingAmount > 0)
             {
-                if (inventorySlots.Count >= capacity)
+                if (IsFull())
                 {
-                    Debug.Log($"{remainingAmount} items couldn't add inventory and were dropped!");
-                    if (initialAmount > remainingAmount)
-                    {
-                        OnInventoryChanged();
-                    }
-
-                    return false;
+                    break;
                 }
 
                 int toAdd = itemData.IsStackable ? Mathf.Min(remainingAmount, itemData.MaxStackSize) : 1;
                 inventorySlots.Add(new InventorySlot(itemData, toAdd));
-                remainingAmount -= (itemData.IsStackable ? toAdd : 1);
+                remainingAmount -= toAdd;
             }
 
-            OnInventoryChanged();
-            return true;
+            return remainingAmount;
         }
 
         public void RemoveItem(ItemData itemData, int amount)
         {
-            if (inventorySlots.Count == 0)
-            {
-                return;
-            }
+            Validate(itemData, amount);
 
-            bool inventoryChanged = false;
+            var remainingAmount = amount;
 
-            for (int i = inventorySlots.Count - 1; i >= 0; i--)
+            for (int i = inventorySlots.Count - 1; remainingAmount > 0; i--)
             {
-                if (inventorySlots[i].ItemData == itemData)
+                if (inventorySlots[i].ItemData != itemData)
                 {
-                    int toRemove = Mathf.Min(amount, inventorySlots[i].Amount);
-                    inventorySlots[i].RemoveAmount(toRemove);
-                    amount -= toRemove;
-                    inventoryChanged = true;
+                    continue;
+                }
 
-                    if (inventorySlots[i].IsEmpty())
-                    {
-                        inventorySlots.RemoveAt(i);
-                    }
+                int toRemove = Mathf.Min(remainingAmount, inventorySlots[i].Amount);
+                inventorySlots[i].RemoveAmount(toRemove);
+                remainingAmount -= toRemove;
 
-                    if (amount <= 0)
-                    {
-                        break;
-                    }
+                if (inventorySlots[i].IsEmpty())
+                {
+                    inventorySlots.RemoveAt(i);
                 }
             }
 
-            if (inventoryChanged)
+            int removed = amount - remainingAmount;
+            if (removed > 0)
             {
                 OnInventoryChanged();
             }
@@ -130,9 +148,32 @@ namespace WorldInteractionSystem.Runtime.Core
             return false;
         }
 
+        private static void Validate(ItemData itemData, int amount)
+        {
+            if (itemData == null)
+            {
+                throw new ArgumentNullException(nameof(itemData));
+            }
+
+            if (amount <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(amount), "Amount must be greater than zero.");
+            }
+        }
+
+        private bool IsFull()
+        {
+            if (inventorySlots.Count >= Capacity)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         private void OnInventoryChanged()
         {
-            EventManager.TriggerOnInventoryChanged();
+            EventManager.TriggerOnInventoryChanged(Slots);
         }
     }
 }
