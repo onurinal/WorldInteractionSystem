@@ -18,5 +18,5 @@ MonoBehaviour:
   itemSprite: {fileID: 21300000, guid: 29554145f1615de4cb96045fa1d00fcd, type: 3}
   itemDescription: Blue Key
   itemType: 0
-  maxStackSize: 99
+  maxStackSize: 2
   isStackable: 1

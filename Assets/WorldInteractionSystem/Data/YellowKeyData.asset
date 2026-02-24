@@ -18,5 +18,5 @@ MonoBehaviour:
   itemSprite: {fileID: 21300000, guid: e42eddb77974095489a4b53f0a6441b4, type: 3}
   itemDescription: Yellow Key
   itemType: 0
-  maxStackSize: 99
+  maxStackSize: 2
   isStackable: 1
