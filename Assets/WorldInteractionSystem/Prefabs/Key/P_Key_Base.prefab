@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5467842648551530677}
   - component: {fileID: 1745855546375515568}
+  - component: {fileID: 5509281259859774876}
   m_Layer: 0
   m_Name: P_Key_Base
   m_TagString: Untagged
@@ -50,6 +51,28 @@ MonoBehaviour:
   outlineThickness: 1.02
   interactText: Pick Up Key
   keyData: {fileID: 11400000, guid: 72c52cf7821cf784ea2c726524ab94d5, type: 2}
+--- !u!95 &5509281259859774876
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 332083109469239214}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f415d005c4dfecf4791e5fb639e9b6c4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &337290555014531055
 PrefabInstance:
   m_ObjectHideFlags: 0
