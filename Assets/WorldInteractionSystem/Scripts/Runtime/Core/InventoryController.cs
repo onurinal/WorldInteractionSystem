@@ -39,6 +39,8 @@ namespace WorldInteractionSystem.Runtime.Core
 
             if (added <= 0)
             {
+                Debug.LogWarning(
+                    $"{remainingAmount}/{amount} '{itemData.ItemName}' could not be added — inventory full.");
                 return 0;
             }
 
@@ -81,6 +83,11 @@ namespace WorldInteractionSystem.Runtime.Core
             while (remainingAmount > 0)
             {
                 if (IsFull())
+                {
+                    break;
+                }
+
+                if (inventorySlots.Count >= Capacity)
                 {
                     break;
                 }
