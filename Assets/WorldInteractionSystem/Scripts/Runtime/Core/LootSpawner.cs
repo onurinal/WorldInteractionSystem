@@ -1,14 +1,12 @@
 ﻿using UnityEngine;
-using WorldInteractionSystem.Runtime.Core;
 
-namespace WorldInteractionSystem.Runtime.Interactable
+namespace WorldInteractionSystem.Runtime.Core
 {
     public class LootSpawner : MonoBehaviour
     {
         [SerializeField] private Transform lootSpawnPoint;
 
-        [Header("Settings")]
-        [SerializeField] private ItemData itemToDrop;
+        [Header("Settings")] [SerializeField] private ItemData itemToDrop;
 
         public void SpawnLoot()
         {
