@@ -3,11 +3,10 @@
 
 
 <div align="center">
-  <video src="https://github.com/onurinal/WorldInteractionSystem/raw/develop/Media/Gameplay.mp4" width="40%" controls muted>
-    Tarayıcınız video etiketini desteklemiyor. 
-  </video>
+  <a href="https://www.youtube.com/watch?v=sLa8nFdZgDA" target="_blank">
+    <img src="https://img.youtube.com/vi/sLa8nFdZgDA/maxresdefault.jpg" width="40%" />
+  </a>
 </div>
-
 
 
 \### Project Gameplay Overview
