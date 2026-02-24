@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Gold chest
-    second: {fileID: 2100000, guid: 50e2dbc35c433034d8afc1ba5b9eed96, type: 2}
+    second: {fileID: 2100000, guid: d53e06ccddda9dd4f8fd0955965a2409, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
