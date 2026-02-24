@@ -51,6 +51,7 @@ MonoBehaviour:
   outlineThickness: 1.02
   interactText: Pick Up Key
   keyData: {fileID: 11400000, guid: 72c52cf7821cf784ea2c726524ab94d5, type: 2}
+  addAmount: 1
 --- !u!95 &5509281259859774876
 Animator:
   serializedVersion: 7
