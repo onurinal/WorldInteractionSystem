@@ -11,13 +11,13 @@ namespace WorldInteractionSystem.Runtime.Interactable
         [Header("References")]
         [SerializeField] private Animator chestAnimator;
 
-        [SerializeField] private UnityEvent<GameObject> onChestOpened;
+        [SerializeField] private UnityEvent onChestOpened;
 
         protected override void OnHoldCompleted(GameObject interactor)
         {
             CanInteract = false;
             TriggerAnimation();
-            onChestOpened?.Invoke(interactor);
+            onChestOpened?.Invoke();
         }
 
         public override string GetInteractText(GameObject interactor)
